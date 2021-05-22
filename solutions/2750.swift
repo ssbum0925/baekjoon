@@ -16,7 +16,7 @@ func sol_2750() {
         input.append(number)
     }
 
-    let result = bubbleSort(input: input)
+    let result = insertionSort(input: input)
     result.forEach { (element) in
         print(element)
     }
@@ -60,4 +60,3 @@ func bubbleSort(input: [Int]) -> [Int] {
     }
     return inputCopy
 }
-

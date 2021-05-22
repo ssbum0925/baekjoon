@@ -20,8 +20,12 @@ func sol_2751() {
         input.append(element)
     }
     
-    let result = mergeSort(input: input)
-    result.forEach { (element) in
+//    let result = mergeSort(input: input)
+//    result.forEach { (element) in
+//        print(element)
+//    }
+    quickSort(arr: &input, p: 0, r: input.count - 1)
+    input.forEach { (element) in
         print(element)
     }
 }
@@ -66,4 +70,29 @@ func merge(arr1: [Int], arr2: [Int]) -> [Int] {
         count += 1
     }
     return result
+}
+
+func quickSort(arr: inout [Int], p: Int, r: Int) {
+    if p < r {
+        let q = partition(arr: &arr, p: p, r: r)
+        quickSort(arr: &arr, p: p, r: q - 1)
+        quickSort(arr: &arr, p: q + 1, r: r)
+    }
+}
+
+func partition(arr: inout [Int], p: Int, r: Int) -> Int {
+    let x = arr[r]
+    var i = p - 1
+    for j in p...(r - 1) {
+        if arr[j] <= x {
+            i += 1
+            let temp = arr[i]
+            arr[i] = arr[j]
+            arr[j] = temp
+        }
+    }
+    let temp = arr[i + 1]
+    arr[i + 1] = arr[r]
+    arr[r] = temp
+    return i + 1
 }
